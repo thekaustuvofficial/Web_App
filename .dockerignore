@@ -1,0 +1,11 @@
+node_modules
+dist
+test_output.txt
+.git
+.gitignore
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore
+eslint.config.js
+vitest.config.js

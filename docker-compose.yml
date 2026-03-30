@@ -1,0 +1,13 @@
+services:
+  webapp:
+    build: .
+    ports:
+      - "8080:80"
+    container_name: webapp-container
+    # VULNERABILITY: Running a container in privileged mode (potential container escape)
+    privileged: true
+    # SECURITY ISSUE: Explicitly running as root (some scanners flag this if default user is not set in Dockerfile)
+    user: "0:0"
+    environment:
+      # BUG: Hardcoded DB Password in environment (bad for security scanners)
+      - DATABASE_PASSWORD=password123!
