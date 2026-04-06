@@ -1,0 +1,12 @@
+SonarQube Bugs Report for WebApp Core (webapp-project)
+Generated on: 2026-04-06
+
+1. Bug: Remove this conditional structure or edit its code blocks so that they're not all the same.
+   Location: src/App.jsx, Line 58
+   Severity: Major
+   Status: Open
+
+2. Bug: Remove this conditional structure or edit its code blocks so that they're not all the same.
+   Location: src/AppOld.jsx, Line 58
+   Severity: Major
+   Status: Open
