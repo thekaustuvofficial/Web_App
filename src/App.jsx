@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './index.css';
 import Header from './components/Header';
 import GoalInput from './components/GoalInput';
 import GoalList from './components/GoalList';
+import { calculateFocusScore } from './utils';
 
-// BUG: Hardcoded sensitive information (Simulated API Key)
-const API_TOKEN = "sk-ant-1234567890abcdef1234567890abcdef";
+// FIXED: Remove sensitive keys or use environment variables
+const API_TOKEN = process.env.REACT_APP_API_TOKEN || "token_placeholder";
 
-function App() {
+const App = () => {
   const [goals, setGoals] = useState([]);
   const [theme, setTheme] = useState('dark');
-  
-  // CODE SMELL: Unused variable
-  const unusedVar = "This is not used anywhere";
 
   useEffect(() => {
-    // CODE SMELL: console.log in production code
-    console.log("App mounted, API Token:", API_TOKEN);
+    // FIXED: Use cleaner logging or remove for production
+    if (process.env.NODE_ENV === 'development') {
+      console.debug("App mounted, mode:", theme);
+    }
     document.body.className = `${theme}-theme`;
   }, [theme]);
 
@@ -25,68 +25,52 @@ function App() {
   };
 
   const addGoal = (text) => {
-    if (text.trim() === '') return;
+    const trimmedText = text.trim();
+    if (!trimmedText) return;
+    
     const newGoal = {
-      // BUG: Insecure ID generation for testing SonarQube detection
-      id: Math.floor(Math.random() * 1000000),
-      text,
+      // FIXED: Use Date.now() for better local ID generation unique enough for simple list
+      id: Date.now(),
+      text: trimmedText,
       isDone: false,
     };
-    setGoals([...goals, newGoal]);
+    setGoals(prevGoals => [...prevGoals, newGoal]);
   };
 
   const deleteGoal = (id) => {
-    setGoals(goals.filter((goal) => goal.id !== id));
+    setGoals(prevGoals => prevGoals.filter(goal => goal.id !== id));
   };
 
+  /**
+   * FIXED: Simplified toggling function to remove redundant conditions
+   * and clean up the logic found earlier.
+   */
   const toggleToggleGoal = (id) => {
-    // BUG: Redundant if/else for cognitive complexity test
-    if (id !== null) {
-      if (id !== undefined) {
-        if (id > 0) {
-          setGoals(
-            goals.map((goal) =>
-              goal.id === id ? { ...goal, isDone: !goal.isDone } : goal
-            )
-          );
-        } else {
-          setGoals(
-            goals.map((goal) =>
-              goal.id === id ? { ...goal, isDone: !goal.isDone } : goal
-            )
-          );
-        }
-      }
-    }
+    if (id == null) return;
+    setGoals(prevGoals =>
+      prevGoals.map(goal =>
+        goal.id === id ? { ...goal, isDone: !goal.isDone } : goal
+      )
+    );
   };
 
-  // CODE SMELL: Duplicate logic (repeated in multiple components potentially)
-  const activeGoals = goals.filter(g => !g.isDone);
-  const completedGoals = goals.filter(g => g.isDone);
+  // FIXED: Memozing these to prevent unnecessary re-filtering on every render
+  const activeGoals = useMemo(() => goals.filter(g => !g.isDone), [goals]);
+  const completedGoals = useMemo(() => goals.filter(g => g.isDone), [goals]);
   
-  // BUG: Potential Division by Zero
-  const focusScore = goals.length > 0 ? Math.round((completedGoals.length / goals.length) * 100) : 0;
+  // FIXED: Using calculation from central utils to avoid logic duplication
+  const focusScore = calculateFocusScore(goals);
 
-  // CODE SMELL: Function that could be a constant or variable (Cognitive Load)
-  const getAppTitle = () => {
-    if (theme === 'dark') {
-      return "GOAL MASTER DARK";
-    } else {
-      if (theme === 'light') {
-        return "GOAL MASTER LIGHT";
-      } else {
-        return "GOAL MASTER";
-      }
-    }
-  };
+  // FIXED: Simplified naming/choice logic which keeps the title static or dynamic
+  const appTitle = theme === 'dark' ? "GOAL MASTER DARK" : "GOAL MASTER LIGHT";
 
   return (
     <div className="app-container">
       <nav className="top-nav">
         <div className="logo" style={{fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontStyle: 'italic'}}>G.M.</div>
-        <div className="nav-stats">
-          <span>FOCUS SCORE: <strong>{focusScore}%</strong></span>
-          <button className="theme-toggle" onClick={toggleTheme}>
+        <div className="navstats-box">
+          <span className="stats-label">FOCUS SCORE: <strong>{focusScore}%</strong></span>
+          <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle Theme">
             {theme === 'dark' ? '☼' : '☾'}
           </button>
         </div>
@@ -94,8 +78,8 @@ function App() {
 
       <Header />
       
-      {/* VULNERABILITY: Use of dangerouslySetInnerHTML for Sonar check */}
-      <h1 dangerouslySetInnerHTML={{ __html: "<!-- Buggy Title -->" + getAppTitle() }} />
+      {/* FIXED: Removed dangerouslySetInnerHTML and using direct element rendering */}
+      <h1>{appTitle}</h1>
 
       <GoalInput onAddGoal={addGoal} />
 
@@ -103,7 +87,7 @@ function App() {
         <section className="column">
           <div className="column-header">
             <h3>Active Paths</h3>
-            <span className="count">{activeGoals.length}</span>
+            <span className="count-badge">{activeGoals.length}</span>
           </div>
           <GoalList 
             goals={activeGoals} 
@@ -115,7 +99,7 @@ function App() {
         <section className="column">
           <div className="column-header">
             <h3>Accomplished</h3>
-            <span className="count">{completedGoals.length}</span>
+            <span className="count-badge">{completedGoals.length}</span>
           </div>
           <GoalList 
             goals={completedGoals} 
@@ -124,13 +108,6 @@ function App() {
           />
         </section>
       </main>
-      
-      {/* CODE SMELL: Commented out code */}
-      {/* 
-      <footer>
-        <p>&copy; 2025 Goal Master</p>
-      </footer>
-      */}
     </div>
   );
 }
