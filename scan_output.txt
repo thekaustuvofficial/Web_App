@@ -1,0 +1,123 @@
+INFO: Scanner configuration file: C:\Users\KAUSTUV\AppData\Local\npm-cache\_npx\4c634e31006915c7\node_modules\sonar-scanner\bin\..\conf\sonar-scanner.properties
+INFO: Project root configuration file: D:\DevOps\WebApp\sonar-project.properties
+INFO: SonarQube Scanner 3.1.0.1141
+INFO: Java 24.0.1 Oracle Corporation (64-bit)
+INFO: Windows 11 10.0 amd64
+INFO: User cache: C:\Users\KAUSTUV\.sonar\cache
+INFO: SonarQube server 9.9.8.100196
+INFO: Default locale: "en_GB", source code encoding: "UTF-8"
+INFO: Load global settings
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by com.google.protobuf.UnsafeUtil$MemoryAccessor (file:/C:/Users/KAUSTUV/.sonar/cache/0386cbfda2705cae493cae6453966cfe/sonar-scanner-engine-shaded-9.9.8.100196-all.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.protobuf.UnsafeUtil$MemoryAccessor
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
+INFO: Load global settings (done) | time=150ms
+INFO: Server id: 147B411E-AZ0-VijFAYHj7L-7iKMr
+INFO: User cache: C:\Users\KAUSTUV\.sonar\cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=118ms
+INFO: Load/download plugins (done) | time=180ms
+INFO: Process project properties
+INFO: Process project properties (done) | time=8ms
+INFO: Execute project builders
+INFO: Execute project builders (done) | time=1ms
+INFO: Project key: webapp-project
+INFO: Base dir: D:\DevOps\WebApp
+INFO: Working dir: D:\DevOps\WebApp\.scannerwork
+INFO: Load project settings for component key: 'webapp-project'
+INFO: Load project settings for component key: 'webapp-project' (done) | time=97ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=117ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=3320ms
+INFO: Load analysis cache
+INFO: Load analysis cache | time=89ms
+WARN: Property 'sonar.password' is deprecated. It will not be supported in the future. Please instead use the 'sonar.login' parameter with a token.
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=100ms
+INFO: Indexing files...
+INFO: Project configuration:
+INFO:   Excluded sources: src/**/*.test.jsx, src/setupTests.js
+INFO: 13 files indexed
+INFO: 6 files ignored because of inclusion/exclusion patterns
+INFO: 0 files ignored because of scm ignore settings
+INFO: Quality profile for css: Sonar way
+INFO: Quality profile for js: Sonar way
+INFO: ------------- Run sensors on module WebApp Core
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=119ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+INFO: No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=3ms
+INFO: Sensor JavaScript analysis [javascript]
+WARN: Node.js version 24 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]
+INFO: 8 source files to be analyzed
+INFO: 8/8 source files have been analyzed
+INFO: Hit the cache for 0 out of 8
+INFO: Miss the cache for 8 out of 8: ANALYSIS_MODE_INELIGIBLE [8/8]
+INFO: Sensor JavaScript analysis [javascript] (done) | time=10237ms
+INFO: Sensor TypeScript analysis [javascript]
+INFO: No input files found for analysis
+INFO: Hit the cache for 0 out of 0
+INFO: Miss the cache for 0 out of 0
+INFO: Sensor TypeScript analysis [javascript] (done) | time=1ms
+INFO: Sensor CSS Rules [javascript]
+INFO: 2 source files to be analyzed
+INFO: 2/2 source files have been analyzed
+INFO: Hit the cache for 0 out of 0
+INFO: Miss the cache for 0 out of 0
+INFO: Sensor CSS Rules [javascript] (done) | time=134ms
+INFO: Sensor CSS Metrics [javascript]
+INFO: Sensor CSS Metrics [javascript] (done) | time=30ms
+INFO: Sensor C# Project Type Information [csharp]
+INFO: Sensor C# Project Type Information [csharp] (done) | time=1ms
+INFO: Sensor C# Analysis Log [csharp]
+INFO: Sensor C# Analysis Log [csharp] (done) | time=12ms
+INFO: Sensor C# Properties [csharp]
+INFO: Sensor C# Properties [csharp] (done) | time=0ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=2ms
+INFO: Sensor TextAndSecretsSensor [text]
+INFO: 10 source files to be analyzed
+INFO: 10/10 source files have been analyzed
+INFO: Sensor TextAndSecretsSensor [text] (done) | time=28ms
+INFO: Sensor VB.NET Project Type Information [vbnet]
+INFO: Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
+INFO: Sensor VB.NET Analysis Log [vbnet]
+INFO: Sensor VB.NET Analysis Log [vbnet] (done) | time=12ms
+INFO: Sensor VB.NET Properties [vbnet]
+INFO: Sensor VB.NET Properties [vbnet] (done) | time=0ms
+INFO: Sensor IaC Docker Sensor [iac]
+INFO: 0 source files to be analyzed
+INFO: 0/0 source files have been analyzed
+INFO: Sensor IaC Docker Sensor [iac] (done) | time=63ms
+INFO: ------------- Run sensors on project
+INFO: Sensor Analysis Warnings import [csharp]
+INFO: Sensor Analysis Warnings import [csharp] (done) | time=1ms
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=6ms
+INFO: SCM Publisher SCM provider for this project is: git
+INFO: SCM Publisher 2 source files to be analyzed
+INFO: SCM Publisher 0/2 source files have been analyzed (done) | time=178ms
+WARN: Missing blame information for the following files:
+WARN:   * src/AppOld.jsx
+WARN:   * src/utils.js
+WARN: This may lead to missing/broken features in SonarQube
+INFO: CPD Executor 2 files had no CPD blocks
+INFO: CPD Executor Calculating CPD for 6 files
+INFO: CPD Executor CPD calculation finished (done) | time=15ms
+INFO: Analysis report generated in 53ms, dir size=184.1 kB
+INFO: Analysis report compressed in 266ms, zip size=57.4 kB
+INFO: Analysis report uploaded in 113ms
+INFO: ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9000/dashboard?id=webapp-project
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at http://localhost:9000/api/ce/task?id=AZ0-X5LLAYHj7L-7iUGQ
+INFO: Analysis total time: 21.322 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 22.526s
+INFO: Final Memory: 18M/68M
+INFO: ------------------------------------------------------------------------
