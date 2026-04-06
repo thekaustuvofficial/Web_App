@@ -6,7 +6,7 @@ import GoalList from './components/GoalList';
 import { calculateFocusScore } from './utils';
 
 // FIXED: Remove sensitive keys or use environment variables
-const API_TOKEN = process.env.REACT_APP_API_TOKEN || "token_placeholder";
+const API_TOKEN = import.meta.env.VITE_APP_API_TOKEN || "token_placeholder";
 
 const App = () => {
   const [goals, setGoals] = useState([]);
@@ -14,7 +14,7 @@ const App = () => {
 
   useEffect(() => {
     // FIXED: Use cleaner logging or remove for production
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.debug("App mounted, mode:", theme);
     }
     document.body.className = `${theme}-theme`;

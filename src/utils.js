@@ -1,6 +1,6 @@
 // FIXED: Remove hardcoded secrets and use environment-aware placeholders
-const DATABASE_PASSWORD = process.env.DB_PASSWORD || 'default_safe_password';
-const INTERNAL_SYSTEM_TOKEN = process.env.SYSTEM_TOKEN || '';
+const DATABASE_PASSWORD = import.meta.env.VITE_DB_PASSWORD || 'default_safe_password';
+const INTERNAL_SYSTEM_TOKEN = import.meta.env.VITE_SYSTEM_TOKEN || '';
 
 // FIXED: Naming convention violation (CamelCase)
 const myBetterNamingVariable = "Naming convention fixed";
